@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganganamma Urumulamma Amma Vaari Jaathara</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Urumulamma Vaari Jaathara</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#events">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#donations">Donations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#expenses">Expenses</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row min-vh-100 align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-3 fw-bold text-white">Welcome to Ganganamma Urumulamma Amma Vaari Jaathara</h1>
+                    <p class="lead text-white">Join us in celebrating our rich cultural heritage and traditions</p>
+                    <a href="#events" class="btn btn-light btn-lg">View Events</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Upcoming Events</h2>
+            <div class="row" id="events-container">
+                <!-- Events will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Donations Section -->
+    <section id="donations" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Donations</h2>
+            
+            <!-- Filter Controls -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" id="donation-search" class="form-control" placeholder="Search donations...">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <select id="village-filter" class="form-select">
+                        <option value="">All Villages</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Village</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donations-table">
+                        <!-- Donations will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expenses Section -->
+    <section id="expenses" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Expenses</h2>
+            <div class="table-responsive">
+                <table class="table table-striped" id="expenses-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Expenses will be loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-4">Ganganamma Urumulamma Amma Vaari Jaathara</h5>
+                    <p>Celebrating our cultural heritage and traditions</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="mb-4">Event Details</h5>
+                    <div class="event-info">
+                        <p><i class="fas fa-calendar"></i> Annual Festival</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Pedda Vellamilli Village</p>
+                        <p><i class="fas fa-clock"></i> Traditional Celebrations</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 Ganganamma Urumulamma Amma Vaari Jaathara. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html> 
