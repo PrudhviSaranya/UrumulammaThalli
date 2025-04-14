@@ -4,7 +4,7 @@ const eventsData = [
         title: "Ganganamma Urumulamma Amma Vaari Jaathara",
         date: "8/6/2025",
         time: "All Day",
-        location: "Amma Vaari Gudi, Pedda Vellamilli",
+        location: "Vellamilli Panchayathi",
         description: "Annual traditional festival celebration with cultural programs and rituals"
     },
      
