@@ -42,7 +42,7 @@ const donationsData = [
         date: "12/04/2025"
     },
     {
-        name: "Akula Kaasi Garu",
+        name: "Akula Suryavathi Garu",
         amount: "₹2,000",
         village: "Pedda Vellamilli",
         date: "12/04/2025"
@@ -64,7 +64,19 @@ const donationsData = [
         amount: "₹5,000",
         village: "Pedda Vellamilli",
         date: "14/04/2025"
-    }
+    },
+    {
+        name: "Nakka Chinna Satyanarayana Garu",
+        amount: "₹3,000",
+        village: "Pedda Vellamilli",
+        date: "14/04/2025"
+    },
+    {
+        name: "Chittimani Annam Raju Garu",
+        amount: "₹2,000",
+        village: "Pedda Vellamilli",
+        date: "14/04/2025"
+    },
 ];
 
 const expensesData = [
