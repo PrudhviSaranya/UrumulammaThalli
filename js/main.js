@@ -77,6 +77,162 @@ const donationsData = [
         village: "Pedda Vellamilli",
         date: "14/04/2025"
     },
+    {
+        name: "Maram Paparao Garu",
+        amount: "₹10,116",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Rayudu Venkateswara Rao Garu",
+        amount: "₹15,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Jujjavarapu Venkata Krishna Garu",
+        amount: "₹5,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Kambhampati Veerraju Garu",
+        amount: "₹3,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Nandyala Nageswara Rao Garu",
+        amount: "₹4,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Gandikota Chinna Subbarao Garu",
+        amount: "₹5,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Paathuri Mohan Rao Garu",
+        amount: "₹2,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Jelugumalli Vaasthavulu",
+        amount: "₹500",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Vemuri Muthyalarao Garu",
+        amount: "₹10,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Kagithala Yedukondalu Garu",
+        amount: "₹1,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Devadula Rambabu Garu",
+        amount: "₹1,116",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Bethina Ramakrishna Garu",
+        amount: "₹2,011",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Gadde Rambabu Garu",
+        amount: "₹10,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Yedavalli Venketeswara Rao Garu",
+        amount: "₹15,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Karingala Somaraju Garu",
+        amount: "₹5,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Paathuri Prabhakar Rao Garu",
+        amount: "₹5,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Paathuri Hari Babu Garu",
+        amount: "₹5,016",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Manepalli Naga Pandu Garu",
+        amount: "₹2,116",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Kaati Krishna Garu",
+        amount: "₹2,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Tappetla Bodemma Garu",
+        amount: "₹5,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Kosanam Pothuraju Garu",
+        amount: "₹5,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Tappetla Lakshman Rao Garu",
+        amount: "₹2,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Pandraka Pedha Rayappa Garu",
+        amount: "₹2,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Vaska Gangaraju Garu",
+        amount: "₹7,500",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Tappetla Chinna Jaggarao Garu",
+        amount: "₹2,000",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
+    {
+        name: "Achanta Srihari Garu",
+        amount: "₹3,002",
+        village: "Vellamilli",
+        date: "30/04/2025"
+    },
 ];
 
 const expensesData = [
@@ -227,3 +383,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 }); 
+
+// Function to calculate and display total donation amount
+function displayTotalDonations() {
+    // Calculate the total amount
+    const totalAmount = donationsData.reduce((total, donation) => {
+        // Remove '₹' and commas, and convert the amount to a number
+        const amount = parseFloat(donation.amount.replace('₹', '').replace(/,/g, ''));
+        return total + amount;
+    }, 0);
+
+    // Get the total amount element
+    const totalAmountElement = document.getElementById('total-donations');
+
+    // Update the element's text content
+    totalAmountElement.textContent = `Total Donations: ₹${totalAmount.toLocaleString()}`;
+}
+
+// Modify the loadDonations function to call displayTotalDonations after loading the donations
+function loadDonations() {
+    const tableBody = document.getElementById('donations-table');
+    tableBody.innerHTML = ''; // Clear existing content
+
+    donationsData.forEach(donation => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${donation.name}</td>
+            <td>${donation.amount}</td>
+            <td>${donation.village}</td>
+            <td>${donation.date}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Call displayTotalDonations to show the total amount
+    displayTotalDonations();
+
+    // Update village filter options
+    const villageFilter = document.getElementById('village-filter');
+    const villages = [...new Set(donationsData.map(d => d.village))];
+    villageFilter.innerHTML = '<option value="">All Villages</option>' +
+        villages.map(village => `<option value="${village}">${village}</option>`).join('');
+}
