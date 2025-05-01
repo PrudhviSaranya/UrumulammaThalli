@@ -151,7 +151,7 @@ const donationsData = [
     },
     {
         name: "Gadde Rambabu Garu",
-        amount: "₹10,000",
+        amount: "₹15,000",
         village: "Vellamilli",
         date: "30/04/2025"
     },
