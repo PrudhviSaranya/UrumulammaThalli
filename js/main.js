@@ -350,15 +350,15 @@ function updateCollectorDonations(donations) {
         if (!collectorTotals[collector]) collectorTotals[collector] = 0;
         collectorTotals[collector] += isNaN(amount) ? 0 : amount;
     });
-    // Format and display
-    let html = '<div class="row justify-content-center">';
+    
+    // Format and display in a single line
+    let html = '<h4 class="text-primary">Donations by Collector:</h4>';
     Object.entries(collectorTotals).forEach(([collector, total]) => {
         const formatted = new Intl.NumberFormat('en-IN', {
             style: 'currency', currency: 'INR', maximumFractionDigits: 0
         }).format(total);
-        html += `<div class='col-md-4 mb-2'><div class='card p-2 shadow-sm'><strong>${collector}</strong><br><span class='text-success'>${formatted}</span></div></div>`;
+        html += `<p class="mb-1"><strong>${collector}:</strong> ${formatted}</p>`;
     });
-    html += '</div>';
     document.getElementById('collector-donations').innerHTML = html;
 }
 
