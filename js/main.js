@@ -323,11 +323,31 @@ function populateFilters() {
     });
 }
 
-// Function to load donations
+function calculateTotalDonations(donations) {
+    return donations.reduce((total, donation) => {
+        // Remove ₹ symbol and commas, then convert to number
+        const amount = parseFloat(donation.amount.replace('₹', '').replace(/,/g, ''));
+        return total + (isNaN(amount) ? 0 : amount);
+    }, 0);
+}
+
+function updateTotalDonations(donations) {
+    const total = calculateTotalDonations(donations);
+    const formattedTotal = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        maximumFractionDigits: 0
+    }).format(total);
+    
+    document.getElementById('total-donations').innerHTML = `
+        <h3 class="text-primary">Total Donations: ${formattedTotal}</h3>
+    `;
+}
+
 function loadDonations() {
     const tableBody = document.getElementById('donations-table');
-    tableBody.innerHTML = ''; // Clear existing content
-
+    tableBody.innerHTML = '';
+    
     donationsData.forEach(donation => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -339,28 +359,44 @@ function loadDonations() {
         `;
         tableBody.appendChild(row);
     });
-
+    
     // Update village filter options
     const villageFilter = document.getElementById('village-filter');
     const villages = [...new Set(donationsData.map(d => d.village))];
     villageFilter.innerHTML = '<option value="">All Villages</option>' +
         villages.map(village => `<option value="${village}">${village}</option>`).join('');
+    
+    updateTotalDonations(donationsData);
 }
 
-// Function to filter donations
 function filterDonations() {
     const searchTerm = document.getElementById('donation-search').value.toLowerCase();
     const villageFilter = document.getElementById('village-filter').value;
-    const rows = document.querySelectorAll('#donations-table tr');
-
-    rows.forEach(row => {
-        const name = row.cells[0].textContent.toLowerCase();
-        const village = row.cells[2].textContent;
-        const matchesSearch = name.includes(searchTerm);
-        const matchesVillage = !villageFilter || village === villageFilter;
-
-        row.style.display = matchesSearch && matchesVillage ? '' : 'none';
+    
+    const filteredDonations = donationsData.filter(donation => {
+        const matchesSearch = donation.name.toLowerCase().includes(searchTerm) ||
+                            donation.collectedby.toLowerCase().includes(searchTerm) ||
+                            donation.village.toLowerCase().includes(searchTerm);
+        const matchesVillage = !villageFilter || donation.village === villageFilter;
+        return matchesSearch && matchesVillage;
     });
+    
+    const tableBody = document.getElementById('donations-table');
+    tableBody.innerHTML = '';
+    
+    filteredDonations.forEach(donation => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${donation.name}</td>
+            <td>${donation.collectedby}</td>
+            <td>${donation.amount}</td>
+            <td>${donation.village}</td>
+            <td>${donation.date}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+    
+    updateTotalDonations(filteredDonations);
 }
 
 // Function to load expenses
