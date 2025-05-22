@@ -310,11 +310,8 @@ function loadEvents() {
 // Function to populate filter options
 function populateFilters() {
     const villageFilter = document.getElementById('village-filter');
-    
-    // Get unique villages
+    villageFilter.innerHTML = '<option value="">All Villages</option>';
     const villages = [...new Set(donationsData.map(d => d.village))];
-    
-    // Populate village filter
     villages.forEach(village => {
         const option = document.createElement('option');
         option.value = village;
@@ -344,11 +341,11 @@ function updateTotalDonations(donations) {
     `;
 }
 
-function loadDonations() {
+function loadDonations(donations = donationsData) {
     const tableBody = document.getElementById('donations-table');
     tableBody.innerHTML = '';
     
-    donationsData.forEach(donation => {
+    donations.forEach(donation => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${donation.name}</td>
@@ -360,13 +357,7 @@ function loadDonations() {
         tableBody.appendChild(row);
     });
     
-    // Update village filter options
-    const villageFilter = document.getElementById('village-filter');
-    const villages = [...new Set(donationsData.map(d => d.village))];
-    villageFilter.innerHTML = '<option value="">All Villages</option>' +
-        villages.map(village => `<option value="${village}">${village}</option>`).join('');
-    
-    updateTotalDonations(donationsData);
+    updateTotalDonations(donations);
 }
 
 function filterDonations() {
@@ -381,22 +372,7 @@ function filterDonations() {
         return matchesSearch && matchesVillage;
     });
     
-    const tableBody = document.getElementById('donations-table');
-    tableBody.innerHTML = '';
-    
-    filteredDonations.forEach(donation => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${donation.name}</td>
-            <td>${donation.collectedby}</td>
-            <td>${donation.amount}</td>
-            <td>${donation.village}</td>
-            <td>${donation.date}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-    
-    updateTotalDonations(filteredDonations);
+    loadDonations(filteredDonations);
 }
 
 // Function to load expenses
