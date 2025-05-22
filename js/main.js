@@ -341,10 +341,30 @@ function updateTotalDonations(donations) {
     `;
 }
 
+function updateCollectorDonations(donations) {
+    // Calculate total per collector
+    const collectorTotals = {};
+    donations.forEach(donation => {
+        const collector = donation.collectedby;
+        const amount = parseFloat(donation.amount.replace('₹', '').replace(/,/g, ''));
+        if (!collectorTotals[collector]) collectorTotals[collector] = 0;
+        collectorTotals[collector] += isNaN(amount) ? 0 : amount;
+    });
+    // Format and display
+    let html = '<div class="row justify-content-center">';
+    Object.entries(collectorTotals).forEach(([collector, total]) => {
+        const formatted = new Intl.NumberFormat('en-IN', {
+            style: 'currency', currency: 'INR', maximumFractionDigits: 0
+        }).format(total);
+        html += `<div class='col-md-4 mb-2'><div class='card p-2 shadow-sm'><strong>${collector}</strong><br><span class='text-success'>${formatted}</span></div></div>`;
+    });
+    html += '</div>';
+    document.getElementById('collector-donations').innerHTML = html;
+}
+
 function loadDonations(donations = donationsData) {
     const tableBody = document.getElementById('donations-table');
     tableBody.innerHTML = '';
-    
     donations.forEach(donation => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -356,14 +376,13 @@ function loadDonations(donations = donationsData) {
         `;
         tableBody.appendChild(row);
     });
-    
     updateTotalDonations(donations);
+    updateCollectorDonations(donations);
 }
 
 function filterDonations() {
     const searchTerm = document.getElementById('donation-search').value.toLowerCase();
     const villageFilter = document.getElementById('village-filter').value;
-    
     const filteredDonations = donationsData.filter(donation => {
         const matchesSearch = donation.name.toLowerCase().includes(searchTerm) ||
                             donation.collectedby.toLowerCase().includes(searchTerm) ||
@@ -371,7 +390,6 @@ function filterDonations() {
         const matchesVillage = !villageFilter || donation.village === villageFilter;
         return matchesSearch && matchesVillage;
     });
-    
     loadDonations(filteredDonations);
 }
 
