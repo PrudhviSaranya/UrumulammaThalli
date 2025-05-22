@@ -332,7 +332,7 @@ function loadDonations() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${donation.name}</td>
-            <td>${donation.collecctedby}</td>
+            <td>${donation.collectedby}</td>
             <td>${donation.amount}</td>
             <td>${donation.village}</td>
             <td>${donation.date}</td>
