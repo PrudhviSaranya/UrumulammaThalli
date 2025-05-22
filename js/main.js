@@ -180,9 +180,9 @@ const donationsData = [
         date: "30/04/2025"
     },
     {
-        name: "Yedavalli Venketeswara Rao Garu",
+        name: "Yedavalli Koteswara Rao Garu",
         collectedby:"Vidiyala Suryachandrarao Garu",
-        amount: "₹15,000",
+        amount: "₹20,000",
         village: "Vellamilli",
         date: "30/04/2025"
     },
@@ -352,7 +352,7 @@ function updateCollectorDonations(donations) {
     });
     
     // Format and display in a single line
-    let html = '<h4 class="text-primary">Donations by Collector:</h4>';
+    let html = '<h4 class="text-primary">Total donations collected by:</h4>';
     Object.entries(collectorTotals).forEach(([collector, total]) => {
         const formatted = new Intl.NumberFormat('en-IN', {
             style: 'currency', currency: 'INR', maximumFractionDigits: 0
